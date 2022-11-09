@@ -14,11 +14,12 @@ protocol RouterMain {
 
 protocol RouterProtocol: RouterMain {
     func initialViewController()
-  //  func showDetail(comment: Article?)
+    func showFavoriteArticles()
     func popToRoot()
 }
 
 class Router: RouterProtocol {
+    
     var navigationController: UINavigationController?
     var assemblyBuilder: AssemblyBuilderProtocol?
     
@@ -34,12 +35,14 @@ class Router: RouterProtocol {
         }
     }
     
-//    func showDetail(comment: Article?) {
-//        if let navigationController = navigationController {
-//            guard let detailViewController = assemblyBuilder?.createDetailModule(comment: comment, router: self) else { return }
-//            navigationController.pushViewController(detailViewController, animated: true)
-//        }
-//    }
+    func showFavoriteArticles() {
+        if let navigationController = navigationController {
+
+            guard let favoriteViewController = assemblyBuilder?.createFavoriteArcticleModule(router: self) else { return }
+                    
+            navigationController.pushViewController(favoriteViewController, animated: true)
+        }
+    }
     
     func popToRoot() {
         if let navigationController = navigationController {

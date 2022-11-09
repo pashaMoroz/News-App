@@ -1,8 +1,8 @@
 //
-//  Extensions.swift
+//  UIView + Extensions.swift
 //  News App
 //
-//  Created by Admin on 07/11/2022.
+//  Created by Admin on 09/11/2022.
 //
 
 import UIKit
@@ -95,4 +95,3 @@ extension UIView {
                bottom: view.bottomAnchor, right: view.rightAnchor)
     }
 }
-

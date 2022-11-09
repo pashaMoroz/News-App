@@ -9,7 +9,7 @@ import UIKit
 
 protocol AssemblyBuilderProtocol: AnyObject {
     func createMainModule(router: RouterProtocol) -> UIViewController
-  //  func createDetailModule(comment: Article?, router: RouterProtocol) -> UIViewController
+    func createFavoriteArcticleModule(router: RouterProtocol) -> UIViewController
 }
 
 class AssemblyModuleBuilder: AssemblyBuilderProtocol {
@@ -18,22 +18,24 @@ class AssemblyModuleBuilder: AssemblyBuilderProtocol {
         
         let view = MainViewController()
         let networkService = NetworkService()
+        let dataService = DataService()
     
-        let presenter = MainPresenter(view: view, networkService: networkService, router: router)
+        let presenter = MainPresenter(view: view, networkService: networkService, dataService: dataService, router: router)
         view.presenter = presenter
         return view
     }
-    
-//    func createDetailModule(comment: Comment?, router: RouterProtocol) -> UIViewController {
-//
-//        let view = DetailViewController()
-//        var networkService = NetworkService()
-//
-//        let presenter = DetailPresenter(view: view, networkService: networkService, router: router, comment: comment)
-//        view.presentor = presenter
-//
-//        return view
-//    }
+        
+    func createFavoriteArcticleModule(router: RouterProtocol) -> UIViewController {
+        
+        let view = FavoriteArticlesViewController()
+        let dataService = DataService()
+        let presenter = FavoriteArticlesPresenter(view: view, dataService: dataService,  router: router)
+        
+        view.presenter = presenter
+        
+        return view
+        
+    }
     deinit {
         print("ModuleBuilder successfully deinit")
     }

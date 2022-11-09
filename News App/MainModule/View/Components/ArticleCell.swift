@@ -10,8 +10,6 @@ import SDWebImage
 import SDWebImageWebPCoder
 
 
-//source, author, title, description and image with urlToImage
-
 class ArticleCell: UITableViewCell {
     
     // MARK: - Properties
@@ -19,6 +17,12 @@ class ArticleCell: UITableViewCell {
     var articleInfo: ArticleInfo! {
         didSet {
             configureArticleInfo()
+        }
+    }
+    
+    var articleFavoriteInfo: FavoriteArticle! {
+        didSet {
+            configureArticleFavoriteInfo()
         }
     }
     
@@ -135,6 +139,17 @@ extension ArticleCell {
         descriptionLabel.text = articleInfo.description ?? ""
         
         guard let urlToImage = articleInfo.urlToImage else { return }
+        guard let url = URL(string: urlToImage) else { return }
+        acticleImageView.sd_setImage(with: url)
+    }
+    
+    private func configureArticleFavoriteInfo() {
+        sourceLabel.text = articleFavoriteInfo.sourceName ?? ""
+        authorLabel.text = articleFavoriteInfo.author ?? ""
+        titleLabel.text =  articleFavoriteInfo.title ?? ""
+        descriptionLabel.text = articleFavoriteInfo.descriptionInfo ?? ""
+        
+        guard let urlToImage = articleFavoriteInfo.urlToImage else { return }
         guard let url = URL(string: urlToImage) else { return }
         acticleImageView.sd_setImage(with: url)
     }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 protocol MainViewProtocol: AnyObject {
     func succes()
@@ -13,24 +14,41 @@ protocol MainViewProtocol: AnyObject {
 }
 
 protocol MainViewPresenterProtocol: AnyObject {
-    init(view: MainViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol)
+    init(view: MainViewProtocol, networkService: NetworkServiceProtocol, dataService: DataService, router: RouterProtocol)
     func getArticles()
-  //  func tapOnTheArticle(article: Arbticle?)
+    func fetchDataFromCoreData()
+    func addToFavorite(article: ArticleInfo)
+    func removeFromFavorite(article: FavoriteArticle)
+    func isFavoriteArticle(article: ArticleInfo?, isNeedToUpdate: Bool) -> Bool
+    func showFavorite()
+    
     var articles: Article? { get set }
+    var filteredArticles: [ArticleInfo]? { get set }
     var networkService: NetworkServiceProtocol? { get set }
+    var dataService: DataService? { get set }
+    var listOfFavoriteArticle: [FavoriteArticle]? { get set }
 }
 
 final class MainPresenter: MainViewPresenterProtocol {
+    
+    // MARK: - Properties
+    
     weak var view: MainViewProtocol?
     var router: RouterProtocol?
     var networkService: NetworkServiceProtocol?
     var articles: Article?
+    var filteredArticles: [ArticleInfo]?
+    var dataService: DataService?
+    var listOfFavoriteArticle: [FavoriteArticle]?
     
-    required init(view: MainViewProtocol, networkService: NetworkServiceProtocol, router: RouterProtocol) {
+    required init(view: MainViewProtocol, networkService: NetworkServiceProtocol, dataService: DataService, router: RouterProtocol) {
         self.view = view
         self.networkService = networkService
+        self.dataService = dataService
+        
         self.router = router
         getArticles()
+        fetchDataFromCoreData()
     }
     
     func getArticles() {
@@ -49,9 +67,74 @@ final class MainPresenter: MainViewPresenterProtocol {
         }
     }
     
-//    func tapOnTheComment(comment: Article?) {
-//        router?.showDetail(comment: comment)
-//    }
+    
+     func fetchDataFromCoreData() {
+        let fetchRequest: NSFetchRequest<FavoriteArticle> = FavoriteArticle.fetchRequest()
+        let sort = NSSortDescriptor(key: "url", ascending: true)
+        fetchRequest.sortDescriptors = [sort]
+        do {
+            listOfFavoriteArticle = try dataService?.persistentContainer.viewContext.fetch(fetchRequest)
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    func addToFavorite(article: ArticleInfo) {
+        
+        guard let dataService = dataService else { return }
+        let managedContext = dataService.persistentContainer.viewContext 
+        guard let entity = NSEntityDescription.entity(forEntityName: Entities.favoriteArticle.rawValue,
+                                                      in: managedContext) else { return }
+        let favoriteArticle = NSManagedObject(entity: entity, insertInto: managedContext) as? FavoriteArticle
+        
+        favoriteArticle?.url = article.url
+        favoriteArticle?.title = article.title
+        favoriteArticle?.descriptionInfo = article.description
+        favoriteArticle?.author = article.author
+        favoriteArticle?.sourceName = article.source?.name
+        favoriteArticle?.urlToImage = article.urlToImage
+            
+        do {
+            try managedContext.save()
+        } catch let error {
+            print("Failed to save task", error.localizedDescription)
+        }
+        view?.succes()
+    }
+    
+    func removeFromFavorite(article: FavoriteArticle) {
+        
+        dataService?.persistentContainer.viewContext.delete(article)
+        do {
+            try dataService?.persistentContainer.viewContext.save()
+        } catch let error as NSError {
+            print("error: \(error.localizedDescription)")
+        }
+    }
+    
+    func isFavoriteArticle(article articleInfo: ArticleInfo?, isNeedToUpdate: Bool) -> Bool {
+        
+        guard let articleInfo = articleInfo else { return false }
+        guard let url = articleInfo.url else { return false }
+        guard let listUrlOfFavoriteArticles = listOfFavoriteArticle else { return false }
+        
+        for article in listUrlOfFavoriteArticles {
+            if article.url == url {
+                isNeedToUpdate ? removeFromFavorite(article: article) : nil
+                fetchDataFromCoreData()
+                view?.succes()
+                return true
+            }
+        }
+        isNeedToUpdate ? addToFavorite(article: articleInfo) : nil
+        fetchDataFromCoreData()
+        view?.succes()
+        return false
+    }
+    
+    func showFavorite() {
+        router?.showFavoriteArticles()
+    }
     
     deinit {
         print("MainPresenter successfully deinit")

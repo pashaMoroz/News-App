@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8439A979291AB8BA00D54938 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8439A978291AB8BA00D54938 /* DataService.swift */; };
+		8439A980291BF8DC00D54938 /* FavoriteArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8439A97F291BF8DC00D54938 /* FavoriteArticlesViewController.swift */; };
+		8439A982291BFB5500D54938 /* FavoriteArticlesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8439A981291BFB5500D54938 /* FavoriteArticlesPresenter.swift */; };
+		8439A986291C20B400D54938 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8439A985291C20B400D54938 /* UIView + Extensions.swift */; };
 		8472512E2919554500476100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472512D2919554500476100 /* AppDelegate.swift */; };
 		847251302919554500476100 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472512F2919554500476100 /* SceneDelegate.swift */; };
 		847251322919554500476100 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847251312919554500476100 /* MainViewController.swift */; };
@@ -22,7 +26,6 @@
 		8472516D29195B3E00476100 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472516C29195B3E00476100 /* NetworkService.swift */; };
 		8472516F29195BEB00476100 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472516E29195BEB00476100 /* MainPresenter.swift */; };
 		8472517229195E2D00476100 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472517129195E2D00476100 /* ArticleCell.swift */; };
-		8472517529196ABB00476100 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472517429196ABB00476100 /* UIView + Extensions.swift */; };
 		E614A6048B739D72944E3E12 /* Pods_News_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1C9F34F08E103AFC7FC6B9 /* Pods_News_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +48,10 @@
 
 /* Begin PBXFileReference section */
 		3F1A4F553E432CC7C15FDA38 /* Pods-News App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News App.release.xcconfig"; path = "Target Support Files/Pods-News App/Pods-News App.release.xcconfig"; sourceTree = "<group>"; };
+		8439A978291AB8BA00D54938 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		8439A97F291BF8DC00D54938 /* FavoriteArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteArticlesViewController.swift; sourceTree = "<group>"; };
+		8439A981291BFB5500D54938 /* FavoriteArticlesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteArticlesPresenter.swift; sourceTree = "<group>"; };
+		8439A985291C20B400D54938 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		8472512A2919554500476100 /* News App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "News App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8472512D2919554500476100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8472512F2919554500476100 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +71,6 @@
 		8472516C29195B3E00476100 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8472516E29195BEB00476100 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		8472517129195E2D00476100 /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
-		8472517429196ABB00476100 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		B18FFCF10CE140F2408D3AC2 /* Pods-News App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-News App.debug.xcconfig"; path = "Target Support Files/Pods-News App/Pods-News App.debug.xcconfig"; sourceTree = "<group>"; };
 		EF1C9F34F08E103AFC7FC6B9 /* Pods_News_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_News_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -112,6 +118,57 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8439A977291A9A5C00D54938 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				847251362919554500476100 /* News_App.xcdatamodeld */,
+				8439A978291AB8BA00D54938 /* DataService.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		8439A97A291AD2FB00D54938 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8472516C29195B3E00476100 /* NetworkService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		8439A97B291AD32300D54938 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8472512D2919554500476100 /* AppDelegate.swift */,
+				8472512F2919554500476100 /* SceneDelegate.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8439A97C291BF86200D54938 /* FavoriteArticleModule */ = {
+			isa = PBXGroup;
+			children = (
+				8439A97D291BF8A200D54938 /* View */,
+				8439A97E291BF8AD00D54938 /* Presenter */,
+			);
+			path = FavoriteArticleModule;
+			sourceTree = "<group>";
+		};
+		8439A97D291BF8A200D54938 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8439A97F291BF8DC00D54938 /* FavoriteArticlesViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8439A97E291BF8AD00D54938 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8439A981291BFB5500D54938 /* FavoriteArticlesPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		847251212919554500476100 = {
 			isa = PBXGroup;
 			children = (
@@ -138,15 +195,14 @@
 			isa = PBXGroup;
 			children = (
 				847251602919571600476100 /* Router */,
-				8472512D2919554500476100 /* AppDelegate.swift */,
-				8472512F2919554500476100 /* SceneDelegate.swift */,
 				847251652919577600476100 /* MainModule */,
+				8439A97C291BF86200D54938 /* FavoriteArticleModule */,
 				8472516B29195B1C00476100 /* ServiceLayer */,
 				8472517329196A9000476100 /* Utilitis */,
 				847251392919554600476100 /* Assets.xcassets */,
 				8472513B2919554600476100 /* LaunchScreen.storyboard */,
 				8472513E2919554600476100 /* Info.plist */,
-				847251362919554500476100 /* News_App.xcdatamodeld */,
+				8439A97B291AD32300D54938 /* Settings */,
 			);
 			path = "News App";
 			sourceTree = "<group>";
@@ -215,7 +271,8 @@
 		8472516B29195B1C00476100 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
-				8472516C29195B3E00476100 /* NetworkService.swift */,
+				8439A977291A9A5C00D54938 /* CoreData */,
+				8439A97A291AD2FB00D54938 /* Networking */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -231,7 +288,7 @@
 		8472517329196A9000476100 /* Utilitis */ = {
 			isa = PBXGroup;
 			children = (
-				8472517429196ABB00476100 /* UIView + Extensions.swift */,
+				8439A985291C20B400D54938 /* UIView + Extensions.swift */,
 			);
 			path = Utilitis;
 			sourceTree = "<group>";
@@ -413,13 +470,16 @@
 				8472516A291957F300476100 /* Article.swift in Sources */,
 				847251322919554500476100 /* MainViewController.swift in Sources */,
 				8472516D29195B3E00476100 /* NetworkService.swift in Sources */,
+				8439A979291AB8BA00D54938 /* DataService.swift in Sources */,
 				8472512E2919554500476100 /* AppDelegate.swift in Sources */,
 				8472516F29195BEB00476100 /* MainPresenter.swift in Sources */,
 				847251642919572E00476100 /* AssemlyModuleBuilder.swift in Sources */,
+				8439A980291BF8DC00D54938 /* FavoriteArticlesViewController.swift in Sources */,
 				847251622919572300476100 /* Router.swift in Sources */,
+				8439A986291C20B400D54938 /* UIView + Extensions.swift in Sources */,
 				847251382919554500476100 /* News_App.xcdatamodeld in Sources */,
 				8472517229195E2D00476100 /* ArticleCell.swift in Sources */,
-				8472517529196ABB00476100 /* UIView + Extensions.swift in Sources */,
+				8439A982291BFB5500D54938 /* FavoriteArticlesPresenter.swift in Sources */,
 				847251302919554500476100 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
