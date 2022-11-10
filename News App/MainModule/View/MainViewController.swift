@@ -156,9 +156,7 @@ extension MainViewController: UITableViewDelegate {
         {
             if !isDataLoading {
                 guard let countOfArticles = presenter?.articles?.articles?.count else { return }
-                
-#warning("Developer accounts are limited to a max of 100 results. You are trying to request results 0 to 110. Please upgrade to a paid plan if you need more results, so I did countOfArticles != 100")
-                
+                                
                 if Link.offset + Link.limit - countOfArticles == Link.limit && countOfArticles != 100 {
                     footerView.isHidden = false
                     isDataLoading.toggle()
@@ -190,16 +188,7 @@ extension MainViewController: UISearchBarDelegate {
 
 extension MainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text?.lowercased() else { return }
-//        filteredUsers = users.filter({ $0.username.contains(searchText) })
-        
-//        presenter.filteredArticles = presenter.articles?.articles?.filter({$0.title?.contains(searchText)!}) ?? [ArticleInfo?]
-        
-        guard var articles = presenter.articles?.articles else { return }
-        guard var filteredArticles = presenter.filteredArticles else { return }
-        
-        //filteredArticles = articles.filter({$0.title?.lowercased()?.contains(searchText.lowercased())})
-        //filteredArticles = articles.filter({$0.title?.lowercased().contains(searchText.lowercased())})
+
     }
 }
 
